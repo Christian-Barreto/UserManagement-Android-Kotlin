@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="?attr/homeAsUpIndicator" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -86,19 +100,41 @@
             android:inputType="textPassword" />
 
         <!-- ===================================== -->
-        <!-- EDAD -->
+        <!-- FECHA DE NACIMIENTO -->
         <!-- ===================================== -->
 
         <EditText
-            android:id="@+id/etEdad"
+            android:id="@+id/etFechaNacimiento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:hint="Edad"
-            android:inputType="number" />
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="Fecha de nacimiento"
+            android:inputType="none" />
+
+        <TextView
+            android:id="@+id/tvEdad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Edad: --"
+            android:textSize="16sp" />
 
         <!-- ===================================== -->
-        <!-- ROL -->
+        <!-- UNIVERSIDAD -->
+        <!-- ===================================== -->
+
+        <EditText
+            android:id="@+id/etUniversidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:hint="Universidad"
+            android:inputType="textCapWords" />
+
+        <!-- ===================================== -->
+        <!-- SEMESTRE -->
         <!-- ===================================== -->
 
         <TextView
@@ -106,12 +142,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="5dp"
-            android:text="Rol"
+            android:text="Semestre"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <Spinner
-            android:id="@+id/spRol"
+            android:id="@+id/spSemestre"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
 
@@ -139,18 +175,8 @@
             android:text=""
             android:textSize="17sp" />
 
-        <!-- ===================================== -->
-        <!-- BOTÓN VOLVER -->
-        <!-- ===================================== -->
-
-        <Button
-            android:id="@+id/btnVolver"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="30dp"
-            android:text="VOLVER AL LOGIN" />
-
     </LinearLayout>
 
 </ScrollView>
+
+</LinearLayout>

@@ -5,6 +5,7 @@ data class CrearUsuarioRequest(
     val apellido: String,
     val correo: String,
     val password: String,
-    val edad: Int,
-    val rolId: Int
+    val fechaNacimiento: String,   // formato yyyy-MM-dd
+    val universidad: String,
+    val semestre: Int
 )
