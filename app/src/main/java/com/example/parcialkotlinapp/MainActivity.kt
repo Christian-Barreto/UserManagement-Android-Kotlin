@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.util.Calendar
+import androidx.appcompat.app.AlertDialog
+import com.google.android.material.appbar.MaterialToolbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -85,21 +87,48 @@ class MainActivity : AppCompatActivity() {
         }
 
         // =====================================
-        // VOLVER AL LOGIN
+        // CERRAR SESIÓN (ícono en la barra superior)
         // =====================================
 
-        val btnVolver2 =
-            findViewById<Button>(R.id.btnVolver2)
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbarMain)
 
-        btnVolver2.setOnClickListener {
+        toolbar.inflateMenu(R.menu.menu_main)
 
-            val intent = Intent(
-                this,
-                LoginActivity::class.java
-            )
+        toolbar.setOnMenuItemClickListener { item ->
 
-            startActivity(intent)
+            if (item.itemId == R.id.action_logout) {
+                mostrarDialogoCerrarSesion()
+                true
+            } else {
+                false
+            }
         }
 
+    }
+
+    // Muestra el cuadro que pide confirmar el cierre de sesión
+    private fun mostrarDialogoCerrarSesion() {
+
+        AlertDialog.Builder(this)
+            .setTitle("Cerrar sesión")
+            .setMessage("¿Deseas cerrar la sesión?")
+            .setNegativeButton("CANCELAR") { dialog, _ ->
+                // Solo cierra el cuadro; el usuario sigue en esta pantalla
+                dialog.dismiss()
+            }
+            .setPositiveButton("SALIR") { _, _ ->
+
+                val intent = Intent(this, LoginActivity::class.java)
+
+                // Borra las pantallas anteriores: el botón Atrás
+                // ya no puede volver a la sesión cerrada
+                intent.flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                startActivity(intent)
+                finish()
+            }
+            .show()
     }
 }
